@@ -31,7 +31,7 @@ def main():
     else:
           liver = "You don't have Liver Disease. 😃"
 
-        st.success(liver)
+    st.success(liver)
 
 
 if __name__ == "__main__":
