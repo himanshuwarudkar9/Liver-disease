@@ -5,6 +5,21 @@ from sklearn.preprocessing import MinMaxScaler
 
 model = pickle.load(open('Trained_model.pkl', 'rb'))
 
+def preprocess_input(age, gender, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
+                     alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
+                     albumin_and_globulin_ratio):
+    # Perform any preprocessing steps here
+    data = [[age, gender, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
+             alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
+             albumin_and_globulin_ratio]]
+    values = data
+    return values
+
+
+def predict(values):
+    prediction = model.predict(values)
+    return prediction
+
 
 def main():   
     st.title("Liver Disease Prediction")
@@ -21,11 +36,12 @@ def main():
     albumin = st.number_input("Albumin", min_value=0.0, step=0.1)
     albumin_and_globulin_ratio = st.number_input("Albumin and Globulin Ratio", min_value=0.0, step=0.1)
     
-    if st.button("Predict"):    
-        values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
-                            alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
-                            albumin_globulin_ratio]])
-        prediction = model.predict(values)
+    if st.button("Predict"):
+        values = preprocess_input(age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin,
+                                  alkaline_phosphotase, alamine_aminotransferase, aspartate_aminotransferase,
+                                  total_proteins, albumin, albumin_and_globulin_ratio)
+
+        prediction = predict(values)
 
     if prediction[0]==1.0:
           liver = "You have Liver Disease. 😟"
