@@ -28,7 +28,7 @@ def main():
 
     if prediction[0]==1.0:
           liver = "You have Liver Disease. 😟"
-        else:
+    else:
           liver = "You don't have Liver Disease. 😃"
 
         st.success(liver)
