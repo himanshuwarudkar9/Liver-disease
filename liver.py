@@ -20,7 +20,7 @@ def main():
     albumin = st.number_input("Albumin")
     albumin_globulin_ratio = st.number_input("Albumin and Globulin Ratio")
 
-    values = ([[age, gender, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
+    values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
                             alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
                             albumin_globulin_ratio]])
 
