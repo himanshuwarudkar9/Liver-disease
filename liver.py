@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 from sklearn.preprocessing import MinMaxScaler
 
-
+model = pickle.load(open('Trained_model.pkl', 'rb'))
 
 
 def main():   
@@ -24,8 +24,7 @@ def main():
         values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
                             alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
                             albumin_globulin_ratio]])
-    model = pickle.load(open('Trained_model.pkl', 'rb'))
-    prediction = model.predict(values)
+        prediction = model.predict(values)
 
     if prediction[0]==1.0:
           liver = "You have Liver Disease. 😟"
