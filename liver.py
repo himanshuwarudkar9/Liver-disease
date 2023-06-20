@@ -26,7 +26,7 @@ def main():
                             albumin_globulin_ratio]])
         prediction = model.predict(values)
 
-    if prediction[0]==1.0:
+    if prediction[0]==1:
           liver = "You have Liver Disease. 😟"
     else:
           liver = "You don't have Liver Disease. 😃"
