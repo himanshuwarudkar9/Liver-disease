@@ -9,16 +9,17 @@ model = pickle.load(open('Trained_model.pkl', 'rb'))
 def main():   
     st.title("Liver Disease Prediction")
 
-    age = st.slider("Age", 0, 100, 25)
-    gender = st.selectbox("Gender", ["Male", "Female"])
-    total_bilirubin = st.number_input("Total Bilirubin")
-    direct_bilirubin = st.number_input("Direct Bilirubin")
-    alkaline_phosphotase = st.number_input("Alkaline Phosphotase")
-    alamine_aminotransferase = st.number_input("Alamine Aminotransferase")
-    aspartate_aminotransferase = st.number_input("Aspartate Aminotransferase")
-    total_proteins = st.number_input("Total Proteins")
-    albumin = st.number_input("Albumin")
-    albumin_globulin_ratio = st.number_input("Albumin and Globulin Ratio")
+    
+    age = st.number_input("Age", min_value=0, step=1)
+    gender = st.radio("Gender", ['Male', 'Female'])
+    total_bilirubin = st.number_input("Total Bilirubin", min_value=0.0, step=0.1)
+    direct_bilirubin = st.number_input("Direct Bilirubin", min_value=0.0, step=0.1)
+    alkaline_phosphotase = st.number_input("Alkaline Phosphotase", min_value=0, step=1)
+    alamine_aminotransferase = st.number_input("Alamine Aminotransferase", min_value=0, step=1)
+    aspartate_aminotransferase = st.number_input("Aspartate Aminotransferase", min_value=0, step=1)
+    total_proteins = st.number_input("Total Proteins", min_value=0.0, step=0.1)
+    albumin = st.number_input("Albumin", min_value=0.0, step=0.1)
+    albumin_and_globulin_ratio = st.number_input("Albumin and Globulin Ratio", min_value=0.0, step=0.1)
     
     if st.button("Predict"):    
         values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
@@ -26,7 +27,7 @@ def main():
                             albumin_globulin_ratio]])
         prediction = model.predict(values)
 
-    if prediction[0]==1:
+    if prediction[0]==1.0:
           liver = "You have Liver Disease. 😟"
     else:
           liver = "You don't have Liver Disease. 😃"
