@@ -3,10 +3,11 @@ import numpy as np
 import pickle
 from sklearn.preprocessing import MinMaxScaler
 
-model = pickle.load(open('Trained_model.pkl', 'rb'))
+
 
 
 def main():
+ model = pickle.load(open('Trained_model.pkl', 'rb'))   
     st.title("Liver Disease Prediction")
 
     age = st.slider("Age", 0, 100, 25)
