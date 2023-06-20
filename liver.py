@@ -19,8 +19,9 @@ def main():
     total_proteins = st.number_input("Total Proteins")
     albumin = st.number_input("Albumin")
     albumin_globulin_ratio = st.number_input("Albumin and Globulin Ratio")
-
-    values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
+    
+    if st.button("Predict"):    
+        values = ([[age, 1 if gender == "Male" else 0, total_bilirubin, direct_bilirubin, alkaline_phosphotase,
                             alamine_aminotransferase, aspartate_aminotransferase, total_proteins, albumin,
                             albumin_globulin_ratio]])
 
